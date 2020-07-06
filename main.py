@@ -1,12 +1,13 @@
 import cv2
 
-face_cascade = cv2.CascadeClassifier("haarcascade_frontalface_default.xml")
+face_cascade = cv2.CascadeClassifier("haarcascade_frontalface_default.xml") #using haar cascade for recognition
 
-img = cv2.imread("facephoto.jpg")
-grayImage = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+#img = cv2.imread("facephoto.jpg")                      #read image file to use
+img = cv2.imread("news.jpg")                            #a more challenging image
+grayImage = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)       #converts image to gray scale for the face detection algorithm to improve results
 
 faces = face_cascade.detectMultiScale(grayImage,        #built in method using haarcascade
-scaleFactor = 1.05,                                     #creates a "scale pyramid", reduce size by 5% each step
+scaleFactor = 1.1,                                      #creates a "scale pyramid", reduce size by 5% each step
 minNeighbors = 7)                                       #eliminate false positives, using the value 7 works best in my case here after trial and error
 
 for x, y, w, h in faces:
